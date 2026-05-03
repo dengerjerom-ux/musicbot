@@ -262,13 +262,16 @@ const commands = {
     console.log(`[PLAY] Befehl von ${message.author.tag} – Channel: "${vc.name}" – Suche: "${args.join(' ')}"`);
 
     const conn = await joinVC(vc);
-    if (!conn) {
-      return message.reply(
-        '❌ **Voice-Verbindung fehlgeschlagen.**\n' +
-        'Das ist ein bekanntes Replit-Problem (UDP-Blockade).\n' +
-        'Der Bot läuft – aber Voice-Audio funktioniert auf Replit nicht zuverlässig.\n' +
-        '**Lösung:** Bot auf Railway, Hetzner oder einem VPS hosten.'
-      );
+   console.log(`[PLAY] Befehl von ${message.author.tag} – Channel: "${vc.name}" – Suche: "${args.join(' ')}"`);
+    try {
+      await distube.play(vc, args.join(' '), {
+        member: message.member,
+        textChannel: message.channel,
+        message,
+      });
+    } catch (err) {
+      console.error('[PLAY] DisTube-Fehler:', err.message);
+      return message.reply(`❌ Fehler: ${err.message}`);
     }
     conn.destroy();
 
