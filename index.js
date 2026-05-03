@@ -264,6 +264,9 @@ const commands = {
     const conn = await joinVC(vc);
    console.log(`[PLAY] Befehl von ${message.author.tag} – Channel: "${vc.name}" – Suche: "${args.join(' ')}"`);
     try {
+     console.log(`[PLAY] Befehl von ${message.author.tag} – Channel: "${vc.name}" – Suche: "${args.join(' ')}"`);
+
+    try {
       await distube.play(vc, args.join(' '), {
         member: message.member,
         textChannel: message.channel,
@@ -273,7 +276,6 @@ const commands = {
       console.error('[PLAY] DisTube-Fehler:', err.message);
       return message.reply(`❌ Fehler: ${err.message}`);
     }
-    conn.destroy();
 
     try {
       await distube.play(vc, args.join(' '), {
