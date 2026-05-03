@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.*
+.git
+.gitignore
+*.log
+.replit
+replit.nix
+.local
+zipFile.zip
